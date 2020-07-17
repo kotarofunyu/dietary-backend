@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: dietary_backend_production
   username: dietary_backend
   password: <%= ENV['DIETARY_BACKEND_DATABASE_PASSWORD'] %>
