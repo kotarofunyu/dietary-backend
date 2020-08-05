@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :weights
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, only: %i[index show]
+  post 'signup', controller: :users, action: :create
+  post 'signin', controller: :sessions, action: :create
+  delete 'signin', controller: :sessions, action: :destroy
+  post 'refresh', controller: :refresh, action: :create
 end
