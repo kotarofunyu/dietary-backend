@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 class WeightsController < ApplicationController
-  before_action :set_weight, only: [:show, :update, :destroy]
+  before_action :set_weight, only: %i[show update destroy]
 
   # GET /weights
   def index
-    @weights = Weight.all
+    # @weights = Weight.all
 
-    render json: @weights
+    # render json: @weights
+    render json: @weights = Weight.all.to_json(only: %i[date weight])
   end
 
   # GET /weights/1
@@ -39,13 +42,14 @@ class WeightsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_weight
-      @weight = Weight.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def weight_params
-      params.require(:weight).permit(:weight, :date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_weight
+    @weight = Weight.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def weight_params
+    params.require(:weight).permit(:weight, :date)
+  end
 end

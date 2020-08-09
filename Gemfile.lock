@@ -136,6 +136,9 @@ GEM
       ffi (~> 1.0)
     redis (4.2.1)
     ruby_dep (1.5.0)
+    seed-fu (2.3.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -172,6 +175,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.0.1)
   redis
+  seed-fu
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
