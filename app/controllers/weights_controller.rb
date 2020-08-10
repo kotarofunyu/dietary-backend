@@ -8,7 +8,7 @@ class WeightsController < ApplicationController
     # @weights = Weight.all
 
     # render json: @weights
-    render json: @weights = Weight.all.to_json(only: %i[date weight comment])
+    render json: @weights = Weight.all.to_json(only: %i[id date weight comment])
   end
 
   # GET /weights/1
