@@ -9,7 +9,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    以下のオリジンは
+    # 以下のオリジンは許可する
     origins 'localhost:8080'
 
     resource '*',
