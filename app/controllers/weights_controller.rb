@@ -18,8 +18,14 @@ class WeightsController < ApplicationController
 
   # POST /weights
   def create
-    @weight = Weight.new(weight_params)
+    # @weight = Weight.new(weight_params)
 
+    # if @weight.save
+    #   render json: @weight, status: :created, location: @weight
+    # else
+    #   render json: @weight.errors, status: :unprocessable_entity
+    # end
+    @weight = Weight.new(weight: params[:weight], date: params[:date], comment: params[:comment])
     if @weight.save
       render json: @weight, status: :created, location: @weight
     else
@@ -50,6 +56,6 @@ class WeightsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def weight_params
-    params.require(:weight).permit(:weight, :date)
+    params.require(:weight).permit!(:weight, :date, :comment)
   end
 end

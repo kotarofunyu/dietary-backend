@@ -3,10 +3,13 @@
 # Table name: weights
 #
 #  id         :bigint           not null, primary key
+#  comment    :string(255)
 #  date       :date
 #  weight     :float(24)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 class Weight < ApplicationRecord
+  # 入力必須 && 同一日付のデータは一意
+  validates :date, presence: true, uniqueness: true
 end
