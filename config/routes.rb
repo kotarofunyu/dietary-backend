@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :weights
-  resources :users, only: %i[index show]
+  resources :users, only: %i[index show create]
   post 'signup', controller: :users, action: :create
   post 'signin', controller: :sessions, action: :create
   delete 'signin', controller: :sessions, action: :destroy
