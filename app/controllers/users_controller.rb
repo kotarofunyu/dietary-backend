@@ -4,9 +4,13 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
-
-    render json: @users
+    if params[:uid]
+      @user = User.find_by(uid: params[:uid])
+      render json: @user
+    else
+      @users = User.all
+      render json: @users
+    end
   end
 
   # GET /users/1
@@ -16,19 +20,11 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
-
-    if @user.save
-      payload = { user_id: user.id }
-      session = JWTSessions:Session.new(payload: payload, refresh_by_access_allowed: true)
-      tokens = session.login
-
-      response.set_cookie(JWTSessions.access_cookie, value: tokens[:access], httponly: true, secure: Rails.env.production?)
-
-      render json: { csrf: tokens[:csrf] }
-      # render json: @user, status: :created, location: @user
+    user = User.new(user_params)
+    if user.save
+      render json: user, status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: user.errors, status: :unprocessable_entity
     end
   end
 
@@ -54,6 +50,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :uid)
     end
 end
