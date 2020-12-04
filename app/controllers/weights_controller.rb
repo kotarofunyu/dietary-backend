@@ -26,6 +26,7 @@ class WeightsController < ApplicationController
     #   render json: @weight.errors, status: :unprocessable_entity
     # end
     @weight = Weight.new(weight: params[:weight], date: params[:date], comment: params[:comment])
+    # binding.pry
     if @weight.save
       render json: @weight, status: :created, location: @weight
     else
@@ -35,7 +36,7 @@ class WeightsController < ApplicationController
 
   # PATCH/PUT /weights/1
   def update
-    if @weight.update(weight_params)
+    if @weight.update(weight: params[:weight], date: params[:date], comment: params[:comment])
       render json: @weight
     else
       render json: @weight.errors, status: :unprocessable_entity
