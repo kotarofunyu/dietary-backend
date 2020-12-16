@@ -37,6 +37,7 @@ class WeightsController < ApplicationController
   # PATCH/PUT /weights/1
   def update
     if @weight.update(weight: params[:weight], date: params[:date], comment: params[:comment])
+    # if @weight.update(weight_params)
       render json: @weight
     else
       render json: @weight.errors, status: :unprocessable_entity
@@ -57,6 +58,6 @@ class WeightsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def weight_params
-    params.require(:weight).permit!(:weight, :date, :comment)
+    params.require(:weight).permit(:weight, :date, :comment)
   end
 end
