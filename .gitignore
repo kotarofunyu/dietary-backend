@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/dist/__json__
 
 # Ignore all logfiles and tempfiles.
 /log/*
