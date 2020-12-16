@@ -1,0 +1,47 @@
+{
+  "title": "List All Users",
+  "description": "",
+  "permalink": "t~users~user~collection~get~users",
+  "uuid": "rastIbwNUoCwk1bnHcCp6",
+  "method": "GET",
+  "path": "/users",
+  "pathTemplate": "/users",
+  "parameters": [],
+  "meta": {
+    "resource": {
+      "title": "User Collection",
+      "permalink": "r~users~user~collection"
+    },
+    "group": {
+      "title": "Users",
+      "permalink": "g~users"
+    }
+  },
+  "transactions": [
+    {
+      "request": {
+        "title": "",
+        "description": "",
+        "method": "GET",
+        "headers": []
+      },
+      "response": {
+        "title": "",
+        "description": "",
+        "statusCode": "200",
+        "contentType": "application/json",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "example": "application/json",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "body": "[\n{\n  \"id\": 1,\n  \"name\": \"hogehoge\",\n  \"email\": \"hogehoge@gmail.com\",\n  \"uid\": \"hogehogefugafuga\"\n},\n{\n  \"id\": 2,\n  \"name\": \"fuga\",\n  \"email\": \"fugafuga@gmail.com\",\n  \"uid\": \"fugahogefuga\"\n},\n]\n\n"
+      }
+    }
+  ]
+}
