@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
 class WeightsController < ApplicationController
-  before_action :set_weight, only: %i[show update destroy]
+  before_action :set_weight, only: %i[update destroy]
 
   # GET /weights
   def index
-    # @weights = Weight.all
-
-    # render json: @weights
     render json: @weights = Weight.all.to_json(only: %i[id date weight comment])
   end
 
@@ -18,15 +15,7 @@ class WeightsController < ApplicationController
 
   # POST /weights
   def create
-    # @weight = Weight.new(weight_params)
-
-    # if @weight.save
-    #   render json: @weight, status: :created, location: @weight
-    # else
-    #   render json: @weight.errors, status: :unprocessable_entity
-    # end
-    @weight = Weight.new(weight: params[:weight], date: params[:date], comment: params[:comment])
-    # binding.pry
+    @weight = Weight.new(weight_params)
     if @weight.save
       render json: @weight, status: :created, location: @weight
     else
@@ -36,8 +25,7 @@ class WeightsController < ApplicationController
 
   # PATCH/PUT /weights/1
   def update
-    if @weight.update(weight: params[:weight], date: params[:date], comment: params[:comment])
-    # if @weight.update(weight_params)
+    if @weight.update(weight_params)
       render json: @weight
     else
       render json: @weight.errors, status: :unprocessable_entity
