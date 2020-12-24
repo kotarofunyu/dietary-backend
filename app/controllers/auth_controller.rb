@@ -3,7 +3,7 @@ class AuthController < ApplicationController
   skip_before_action :authenticate_user
 
   def create
-    binding.pry
+    # binding.pry
     FirebaseIdToken::Certificates.request
     raise ArgumentError, 'BadRequest Parameter' if payload.blank?
     @user = User.find_or_initialize_by(uid: payload('sub'))
