@@ -5,8 +5,12 @@ class WeightsController < ApplicationController
   # before_action :set_user
 
   def index
-    weights = Weight.where(user_id: params[:user_id]).select(:id, :date, :weight, :comment)
-    render json: weights if weights
+    if params[:user_id].nil?
+      render status: 404, json: { status: 404, message: 'Weight not found' }
+    else
+      weights = Weight.where(user_id: params[:user_id]).select(:id, :date, :weight, :comment)
+      render json: weights if weights
+    end
   end
 
   def show
