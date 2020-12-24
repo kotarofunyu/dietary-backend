@@ -8,8 +8,10 @@
 #  weight     :float(24)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint
 #
 class Weight < ApplicationRecord
+  belongs_to :user
   # 入力必須 && 同一日付のデータは一意
   validates :date, presence: true, uniqueness: true
 end

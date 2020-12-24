@@ -5,7 +5,9 @@ class WeightsController < ApplicationController
 
   # GET /weights
   def index
-    render json: @weights = Weight.all.to_json(only: %i[id date weight comment])
+    weights = Weight.where(id: params[:id])
+    render json: weights
+    # render json: @weights = Weight.all.to_json(only: %i[id date weight comment])
   end
 
   # GET /weights/1
