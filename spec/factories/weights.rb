@@ -10,10 +10,11 @@
 #  updated_at :datetime         not null
 #  user_id    :bigint
 #
-require 'test_helper'
-
-class WeightTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+  factory :weight do
+    association :user
+    comment { '体重減った' }
+    date { '2020-01-01' }
+    weight { 90 }
+  end
 end

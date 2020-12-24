@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 class WeightsController < ApplicationController
-  before_action :set_weight, only: %i[update destroy]
+  before_action :set_weight, only: %i[show update destroy]
+  # before_action :set_user
 
-  # GET /weights
   def index
-    render json: @weights = Weight.all.to_json(only: %i[id date weight comment])
+    if params[:user_id].nil?
+      render status: 404, json: { status: 404, message: 'Weight not found' }
+    else
+      weights = Weight.where(user_id: params[:user_id]).select(:id, :date, :weight, :comment)
+      render json: weights if weights
+    end
   end
 
-  # GET /weights/1
   def show
     render json: @weight
   end
 
-  # POST /weights
   def create
     @weight = Weight.new(weight_params)
     if @weight.save
@@ -23,7 +26,6 @@ class WeightsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /weights/1
   def update
     if @weight.update(weight_params)
       render json: @weight
@@ -32,20 +34,17 @@ class WeightsController < ApplicationController
     end
   end
 
-  # DELETE /weights/1
   def destroy
     @weight.destroy
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_weight
-    @weight = Weight.find(params[:id])
+    @weight = Weight.find_by(id: params[:id], user_id: params[:user_id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def weight_params
-    params.require(:weight).permit(:weight, :date, :comment)
+    params.require(:weight).permit(:weight, :date, :comment, :user_id)
   end
 end

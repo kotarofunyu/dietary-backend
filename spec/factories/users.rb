@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -15,11 +13,10 @@
 #
 #  index_users_on_email  (email) UNIQUE
 #
-class User < ApplicationRecord
-  has_many :weights
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
-
-  before_save { email.downcase! }
-
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+FactoryBot.define do
+  factory :user do
+    name { "hogehoge" }
+    email { "hoge@fuga.com" }
+    uid { "a30gdir2sfs" }
+  end
 end
