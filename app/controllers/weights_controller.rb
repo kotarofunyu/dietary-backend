@@ -2,7 +2,6 @@
 
 class WeightsController < ApplicationController
   before_action :set_weight, only: %i[show update destroy]
-  # before_action :set_user
 
   def index
     if params[:user_id].nil?

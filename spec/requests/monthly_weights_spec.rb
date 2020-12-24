@@ -1,18 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "WeightController" do
-  describe 'GET /weights' do
-    context 'with params[:user_id]' do
-
-      it 'returns weight data index' do
+RSpec.describe "MonthlyWeightController" do
+  describe 'GET /monthly' do
+    context 'with params[:user_id] and params[:month]' do
+      it 'returns monthly weights' do
         user = create(:user)
-        weight = create(:weight, user_id: user.id)
+        weight = create(:weight, user_id: user.id, date: '2020-01-01')
 
-        get '/weights', params: { user_id: user.id }
+        get '/monthly', params: { month: 1, user_id: user.id }
 
         json_response = JSON.parse(response.body)
 
-        expect(response).to have_http_status(:ok)
         expect(json_response.first['id']).to eq weight.id
         expect(json_response.first['date']).to eq weight.date.to_s
         expect(json_response.first['weight']).to eq weight.weight
@@ -20,9 +18,9 @@ RSpec.describe "WeightController" do
       end
     end
 
-    context 'without params[:user_id]' do
+    context 'without params' do
       it 'returns not found' do
-        get '/weights'
+        get '/monthly'
         expect(response).to have_http_status(:not_found)
       end
     end
