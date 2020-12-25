@@ -3,14 +3,24 @@ class AuthController < ApplicationController
   skip_before_action :authenticate_user
 
   def create
+    binding.pry
     FirebaseIdToken::Certificates.request
     raise ArgumentError, 'BadRequest Parameter' if payload.blank?
 
-    @user = User.find_or_create_by(uid: payload['user_id'])
-    if @user
-      render json: @user, status: :ok
+    if params[:user][:name].present?
+      @user = User.create!(uid: payload['user_id'], name: params[:user][:name], email: params[:user][:email])
+      if @user
+        render json: @user, status: :ok
+      else
+        render json: @user.errors, stauts: :unprocessable_entity
+      end
     else
-      render json: @user.errors, stauts: :unprocessable_entity
+      @user = User.find_by(uid: payload['user_id'], email: params[:user][:email])
+      if @user
+        render json: @user, status: :ok
+      else
+        render json: @user.errors, stauts: :unprocessable_entity
+      end
     end
   end
 
