@@ -34,6 +34,11 @@ gem 'annotate'
 gem 'seed-fu'
 
 gem 'pry-rails'
+gem 'redis-rails'
+
+gem 'firebase-auth-rails'
+gem 'firebase_id_token', '~> 2.4.0'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
