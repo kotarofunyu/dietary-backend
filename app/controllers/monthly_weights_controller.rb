@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class MonthlyWeightsController < ApplicationController
-  # before_action :user_exists?
-  # before_action :set_user
-
   def show
     month = Time.new(Time.now.year, params[:month]).all_month
 
