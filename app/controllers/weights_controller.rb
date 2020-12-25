@@ -1,19 +1,11 @@
 # frozen_string_literal: true
 
 class WeightsController < ApplicationController
-  before_action :set_weight, only: %i[show update destroy]
+  before_action :set_weight, only: %i[update destroy]
 
   def index
-    if params[:user_id].nil?
-      render status: 404, json: { status: 404, message: 'Weight not found' }
-    else
-      weights = Weight.where(user_id: params[:user_id]).select(:id, :date, :weight, :comment)
-      render json: weights if weights
-    end
-  end
-
-  def show
-    render json: @weight
+    weights = Weight.where(user_id: current_user.id).select(:id, :date, :weight, :comment)
+    render json: weights if weights
   end
 
   def create
@@ -40,10 +32,10 @@ class WeightsController < ApplicationController
   private
 
   def set_weight
-    @weight = Weight.find_by(id: params[:id], user_id: params[:user_id])
+    @weight = Weight.find_by(id: params[:id], user_id: current_user.id)
   end
 
   def weight_params
-    params.require(:weight).permit(:weight, :date, :comment, :user_id)
+    params.require(:weight).permit(:weight, :date, :comment).merge(user_id: current_user.id)
   end
 end
