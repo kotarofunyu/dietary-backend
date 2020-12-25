@@ -21,9 +21,4 @@ class MonthlyWeightsController < ApplicationController
     render status: 404, json: { status:404, message: 'Not Found' }
   end
 
-  # def set_user
-  #   user_exists?
-  #   @user = User.find(params[:user_id])
-  # end
-
 end
