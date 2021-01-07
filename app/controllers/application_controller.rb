@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
-  include JWTSessions::RailsAuthorization
+  # include JWTSessions::RailsAuthorization
   include Firebase::Auth::Authenticable
-  rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
+  # rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
 
   before_action :authenticate_user
 
