@@ -33,7 +33,8 @@ gem 'annotate'
 
 gem 'seed-fu'
 
-gem 'pry-rails'
+# gem 'pry-rails'
+gem 'pry-byebug'
 gem 'redis-rails'
 
 gem 'firebase-auth-rails'

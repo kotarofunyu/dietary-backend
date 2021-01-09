@@ -26,7 +26,11 @@ class WeightsController < ApplicationController
   end
 
   def destroy
-    @weight.destroy
+    if @weight.destroy
+      head :ok
+    else
+      head :bad_request
+    end
   end
 
   private

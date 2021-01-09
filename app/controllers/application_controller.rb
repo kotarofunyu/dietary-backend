@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::API
-  # include JWTSessions::RailsAuthorization
   include Firebase::Auth::Authenticable
-  # rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
 
   before_action :authenticate_user
 
@@ -11,7 +9,4 @@ class ApplicationController < ActionController::API
     @current_user ||= User.find(payload['user_id'])
   end
 
-  def not_authorized
-    render json: { error: 'Not Authorized' }, status: :unauthorized
-  end
 end
