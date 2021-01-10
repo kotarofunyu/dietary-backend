@@ -3,8 +3,8 @@
 class MonthlyWeightsController < ApplicationController
 
   def show
-    month = Time.new(Time.now.year, params[:month]).all_month
-    @weights = Weight.where(date: month, user_id: current_user.id)
+    month = Time.new(params[:year], params[:month]).all_month
+    @weights = Weight.where(date: month, user_id: current_user.id).order(:date)
     if @weights.present?
       render json: @weights
     else
