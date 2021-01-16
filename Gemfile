@@ -35,7 +35,6 @@ gem 'seed-fu'
 
 # gem 'pry-rails'
 gem 'pry-byebug'
-gem 'redis-rails'
 
 gem 'firebase-auth-rails'
 gem 'firebase_id_token', '~> 2.4.0'

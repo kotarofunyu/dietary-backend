@@ -26,12 +26,12 @@ Bundler.require(*Rails.groups)
 module DietaryBackend
   class Application < Rails::Application
     if Rails.env.production?
-      config.cache_store = :redis_store, {
+      config.cache_store = :redis_cache_store, {
         servers: ENV['REDIS_URL'],
         expire_after: 3.days
       }
     else
-      config.cache_store = :redis_store, 'redis://localhost:6379/0/cache'
+      config.cache_store = :redis_cache_store, 'redis://localhost:6379/0/cache'
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
