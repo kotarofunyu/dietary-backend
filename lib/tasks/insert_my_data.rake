@@ -7,13 +7,10 @@ namespace :insert_my_data do
     ]
 
     user = User.find_by(name: "kotarofunyu", email: "kotarofunyu@gmail.com")
+
     arr.each do |obj|
-      p obj
+      weight = Weight.find_or_create_by(date: obj[:date], weight: obj[:weight], comment: obj[:comment], user_id: user.id)
+      p weight
     end
-    # arr.each do |obj|
-    #   weight = Weight.find_or_create_by(date: obj[:date], weight: obj[:weight], comment: obj[:comment], user_id: user.id)
-    #   p weight
-    # end
-    # p user
   end
 end
