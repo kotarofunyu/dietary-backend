@@ -4,7 +4,8 @@ class ApplicationController < ActionController::API
 
   # before_action :authenticate_user
 
-  before_action :require_login
+  # before_action :require_login
+  before_action :check_existece_of_custom_header
 
   private
 
@@ -17,6 +18,12 @@ class ApplicationController < ActionController::API
     return if @current_user
 
     render json: { error: 'Unauthorized' }, status: :unauthorized
+  end
+
+  def check_existece_of_custom_header
+    return if request.headers["HTTP_CUSTOM_HEADER_ELEMENT"] == "kochandayo"
+
+    render json: { error: 'forbidden' }, status: :forbidden
   end
 
 end
