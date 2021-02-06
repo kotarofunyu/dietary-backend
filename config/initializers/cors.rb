@@ -11,7 +11,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # 以下のオリジンは許可する
     # あとでherokuも追加する
-    origins 'localhost:8080', 'http://dietary-app.herokuapp.com', 'https://dietary-app.herokuapp.com'
+    origins 'localhost:8080','localhost:3000', 'http://dietary-app.herokuapp.com', 'https://dietary-app.herokuapp.com'
 
     resource '*',
              headers: :any,
