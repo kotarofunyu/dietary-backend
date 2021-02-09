@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
 
   # before_action :authenticate_user
 
-  # before_action :require_login
+  before_action :require_login
   before_action :check_existece_of_custom_header
 
   private
@@ -15,6 +15,7 @@ class ApplicationController < ActionController::API
 
   def require_login
     @current_user = User.find_by(id: session[:user_id])
+    p "ログイン中のユーザー：#{@current_user}"
     return if @current_user
 
     render json: { error: 'Unauthorized' }, status: :unauthorized
