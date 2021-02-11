@@ -4,7 +4,7 @@ class SessionController < ApplicationController
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      payload = { message: 'Successfully Logged in!', name: user.name }
+      payload = { message: 'Successfully Logged in!', user: { id: user.id, name: user.name } }
       render json: payload, status: :ok
     else
       payload = { errors: ['Log in failed'] }
