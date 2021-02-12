@@ -11,4 +11,10 @@ class SessionController < ApplicationController
       render json: payload, status: :forbidden
     end
   end
+
+  def destroy
+    p session[:user_id]
+    session[:user_id] = nil
+    render json: { message: 'Logged out.', user: nil }, status: :ok
+  end
 end
