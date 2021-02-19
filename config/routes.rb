@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   resources :weights
   resources :users, only: %i[index show create]
+  resources :tags, only: %i[index create update destroy]
   post 'signup', controller: :users, action: :create
   get 'monthly', controller: :monthly_weights, action: :show
   post 'auth' => 'auth#create'
