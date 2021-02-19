@@ -10,6 +10,7 @@
 #
 class Tag < ApplicationRecord
   validates :name, presence: true, uniqueness: true
+  has_many :weight_tags
   has_many :weights, through: :weight_tags
-  belongs_to :user
+  belongs_to :user, dependent: :destroy_all
 end

@@ -9,6 +9,9 @@
 #  weight_id  :integer          not null
 #
 class WeightTag < ApplicationRecord
+  belongs_to :tag, dependent: :destroy
+  belongs_to :weight, dependent: :destroy
+
   validates :weight_id, presence: true
   validates :tag_id, presence: true
 end
