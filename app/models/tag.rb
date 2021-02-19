@@ -11,4 +11,5 @@
 class Tag < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   has_many :weights, through: :weight_tags
+  belongs_to :user
 end
