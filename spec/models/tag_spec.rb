@@ -11,5 +11,27 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it 'userなしで作成できない' do
+    tag = Tag.new(
+      name: "hogehoge"
+    )
+
+    expect(tag).to be_invalid
+  end
+
+  it 'weights, weight_tagsなしで作成できる' do
+    user = User.create(
+      email: 'hogehoge@hoge.com',
+      name: 'hogehoge',
+      password: 'hoge'
+    )
+
+    tag = Tag.new(
+      name: "fugafuga",
+      user_id: user.id
+    )
+
+    expect(tag).to be_valid
+  end
 end
