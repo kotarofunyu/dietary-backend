@@ -14,4 +14,5 @@ class Weight < ApplicationRecord
   belongs_to :user
   # 入力必須 && 同一日付のデータは一意
   validates :date, presence: true, uniqueness: true
+  has_many :tags, through: :weight_tags
 end
