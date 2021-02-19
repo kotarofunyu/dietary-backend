@@ -21,11 +21,7 @@ RSpec.describe Tag, type: :model do
   end
 
   it 'weights, weight_tagsなしで作成できる' do
-    user = User.create(
-      email: 'hogehoge@hoge.com',
-      name: 'hogehoge',
-      password: 'hoge'
-    )
+    user = create(:user)
 
     tag = Tag.new(
       name: "fugafuga",
