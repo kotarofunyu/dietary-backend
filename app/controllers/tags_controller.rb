@@ -2,8 +2,8 @@ class TagsController < ApplicationController
   before_action :set_tag, only: %i[update destroy]
 
   def index
-    tags = Tag.all
-    render json: tags, status: :ok
+    @tags = Tag.where(user_id: @current_user.id)
+    render json: @tags, status: :ok
   end
 
   def create
@@ -34,10 +34,10 @@ class TagsController < ApplicationController
   private
 
   def set_tag
-    @tag = Tag.find_by(id: params[:id])
+    @tag = Tag.find_by(id: params[:id], user_id: @current_user.id)
   end
 
   def tags_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:name).merge(user_id: @current_user.id)
   end
 end
