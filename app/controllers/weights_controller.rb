@@ -4,7 +4,9 @@ class WeightsController < ApplicationController
   before_action :set_weight, only: %i[update destroy]
 
   def index
-    weights = Weight.where(user_id: current_user.id).select(:id, :date, :weight, :comment).order(:date)
+    # weights = Weight.where(user_id: current_user.id).select(:id, :date, :weight, :comment).order(:date)
+    # binding.pry
+    weights = Weight.where(user_id: @current_user.id).select(:id, :date, :weight, :comment).order(:date)
     render json: weights if weights
   end
 

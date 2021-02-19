@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   post 'signup', controller: :users, action: :create
   get 'monthly', controller: :monthly_weights, action: :show
   post 'auth' => 'auth#create'
+  post 'session' => 'session#create'
+  delete 'session' => 'session#destroy'
+
 end
