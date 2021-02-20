@@ -4,7 +4,7 @@ class WeightsController < ApplicationController
   before_action :set_weight, only: %i[update destroy]
 
   def index
-    @weights = Weight.includes(:tags).where(user_id: @current_user.id).select(:id, :date, :weight, :comment).order(:date)
+    @weights = Weight.includes(:tags).where(user_id: @current_user.id).order(:date)
   end
 
   def create
