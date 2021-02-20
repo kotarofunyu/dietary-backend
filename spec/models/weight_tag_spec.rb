@@ -5,8 +5,8 @@
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  tag_id     :integer          not null
-#  weight_id  :integer          not null
+#  tag_id     :integer
+#  weight_id  :integer
 #
 require 'rails_helper'
 
