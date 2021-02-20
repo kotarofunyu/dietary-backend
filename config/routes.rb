@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :weights
+  resources :weights, { :format => 'json' }
   resources :users, only: %i[index show create]
   resources :tags, only: %i[index create update destroy]
   post 'signup', controller: :users, action: :create
