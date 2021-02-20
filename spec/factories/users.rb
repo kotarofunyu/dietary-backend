@@ -12,7 +12,8 @@
 #
 FactoryBot.define do
   factory :user do
-    name { "hogehoge" }
-    uid { "a30gdir2sfs" }
+    name { 'hogehoge' }
+    email { 'hogehoge@hoge.com' }
+    password { 'hoge' }
   end
 end

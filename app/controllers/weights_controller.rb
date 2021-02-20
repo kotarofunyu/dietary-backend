@@ -38,10 +38,10 @@ class WeightsController < ApplicationController
   private
 
   def set_weight
-    @weight = Weight.find_by(id: params[:id], user_id: current_user.id)
+    @weight = Weight.find_by(id: params[:id], user_id: @current_user.id)
   end
 
   def weight_params
-    params.require(:weight).permit(:weight, :date, :comment).merge(user_id: current_user.id)
+    params.require(:weight).permit(:weight, :date, :comment, tag_ids: []).merge(user_id: @current_user.id)
   end
 end
